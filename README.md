@@ -2,7 +2,7 @@
 
 Spring boot Restful API microservices used to consume GIT API’s and aggregate data
 
-##Prerequisites
+## Prerequisites
 
 For building and running the application you need:
 
@@ -10,20 +10,26 @@ For building and running the application you need:
 - [Maven 3](https://maven.apache.org)
 
 
-##Building from Source
+## Building from Source
 
 ```shell
 $ ./mvnw clean install
  ```
 
-##Running the application locally
+## Running the application locally
 
 Use the Spring Boot Maven plugin
 ```shell
 mvn spring-boot:run
  ```
 
-##Exposed RESTful API endpoints
+## Exposed RESTful API endpoints
+
+All the endpoints were protected with "basic" authentication
+```shell
+** Username ** : gituser
+** Password  **: gituser
+ ```
 
 ###### To Get the repository list of a user
 ```shell
@@ -68,14 +74,14 @@ http://localhost:9999/api/statistics/rogers-repo/GitRestApi?type=contributors
 Swagger 2 is an open-source project used to describe,test and document RESTful APIs.
 
 ```shell
-http://localhost:9999/swagger-ui.html
+** End point ** : http://localhost:9999/swagger-ui.html
  ```
 
 ######  spring-boot-Security
  Secures all HTTP endpoints with "basic" authentication
 ```shell
-Username : gituser
-Password : gituser
+** Username ** : gituser
+** Password  **: gituser
  ```
 
 ######  spring-boot-actuator
@@ -84,7 +90,7 @@ Spring Boot Actuator provides the infrastructure required for actuator endpoints
 annotation support for actuator endpoints. Out of the box, this module provides a number of endpoints
 including the `HealthEndpoint`, `EnvironmentEndpoint`, `BeansEndpoint` and many more.
 ```shell
-End point : http://localhost:9999/actuator
+** End point ** : http://localhost:9999/actuator
  ```
 
 ######  spring-boot-test
