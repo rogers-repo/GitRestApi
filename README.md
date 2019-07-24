@@ -12,41 +12,37 @@ For building and running the application you need:
 
 ##Building from Source
 
-[indent=0]
-----
+```shell
 $ ./mvnw clean install
-----
+ ```
 
 ##Running the application locally
 
 Use the Spring Boot Maven plugin
-[indent=0]
-----
+```shell
 mvn spring-boot:run
-----
+ ```
 
 ##Exposed RESTful API endpoints
 
 ###### To Get the repository list of a user
-[indent=0]
-----
+```shell
 api/repolist/<repository username >
 
 Example : http://localhost:9999/api/repolist/rogers-repo
-----
+ ```
 
 ###### To Get top 10 contributors name in last 30 days
-[indent=0]
-----
+```shell
 api/repos/<Git  username>/<Git repo name>/contributors?per_page=10&since=currentdate-30
 
 Example : http://localhost:9999/api/contributors/rogers-repo/GitRestApi
-----
+ ```
 
 ###### To Get the aggregate count based on type
 
-[indent=0]
-----
+```shell
+
 -To get the count of number of open pr
 api/repos/<Git  username>/<Git repo name>/pulls?state=open
 
@@ -62,31 +58,40 @@ http://localhost:9999/api/statistics/rogers-repo/GitRestApi?type=openpr
 http://localhost:9999/api/statistics/rogers-repo/GitRestApi?type=closedpr
 http://localhost:9999/api/statistics/rogers-repo/GitRestApi?type=30daysCommit
 http://localhost:9999/api/statistics/rogers-repo/GitRestApi?type=contributors
-----
+ ```
 
 
 
 ## Spring BOOT Modules
 
-=== spring-boot-actuator
+###### Swagger2
+Swagger 2 is an open-source project used to describe,test and document RESTful APIs.
+
+```shell
+http://localhost:9999/swagger-ui.html
+ ```
+
+######  spring-boot-Security
+ Secures all HTTP endpoints with "basic" authentication
+```shell
+Username : gituser
+Password : gituser
+ ```
+
+######  spring-boot-actuator
 Actuator endpoints let you monitor and interact with your application.
 Spring Boot Actuator provides the infrastructure required for actuator endpoints. It contains
 annotation support for actuator endpoints. Out of the box, this module provides a number of endpoints
 including the `HealthEndpoint`, `EnvironmentEndpoint`, `BeansEndpoint` and many more.
+```shell
+End point : http://localhost:9999/actuator
+ ```
 
-=== spring-boot-test
+######  spring-boot-test
 This module contains core items and annotations that can be helpful when testing your application.
 
-=== spring-boot-devtools
+######  spring-boot-devtools
 The spring-boot-devtools module provides additional development-time features such as automatic restarts,
 for a smoother application development experience. Developer tools are automatically disabled when
 running a fully packaged application.
 
-== Swagger2
-Swagger 2 is an open-source project used to describe,test and document RESTful APIs.
-
-## spring-boot-Security
-```shell
-
- Secures all HTTP endpoints with "basic" authentication
- ```
