@@ -85,5 +85,8 @@ running a fully packaged application.
 == Swagger2
 Swagger 2 is an open-source project used to describe,test and document RESTful APIs.
 
-==spring-boot-Security
+## spring-boot-Security
+```shell
+
  Secures all HTTP endpoints with "basic" authentication
+ ```
