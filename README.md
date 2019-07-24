@@ -54,7 +54,7 @@ Example : http://localhost:9999/api/contributors/rogers-repo/GitRestApi
 GET end point: api/repos/<Git  username>/<Git repo name>/pulls?state=open
 
 - To get the count of number of closed pr in current days
-GET end point: api/repos/<Git  username>/<Git repo name>/pulls?state=closed&since=tody'sdate
+GET end point: api/repos/<Git  username>/<Git repo name>/pulls?state=closed&since=todays date
 
 - Number of committers in last 30 days
 GET end point: repos/<Git  username>/<Git repo name>/commits?since=currentdate-30
