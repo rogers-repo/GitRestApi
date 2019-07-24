@@ -34,14 +34,14 @@ Password: gituser
 
 ###### To Get the repository list of a user
 ```shell
-api/repolist/<repository username >
+GET end point: api/repolist/<repository username >
 
 Example : http://localhost:9999/api/repolist/rogers-repo
  ```
 
 ###### To Get top 10 contributors name in last 30 days
 ```shell
-api/repos/<Git  username>/<Git repo name>/contributors?per_page=10&since=currentdate-30
+GET end point: api/repos/<Git  username>/<Git repo name>/contributors?per_page=10&since=currentdate-30
 
 Example : http://localhost:9999/api/contributors/rogers-repo/GitRestApi
  ```
@@ -51,13 +51,13 @@ Example : http://localhost:9999/api/contributors/rogers-repo/GitRestApi
 ```shell
 
 -To get the count of number of open pr
-api/repos/<Git  username>/<Git repo name>/pulls?state=open
+GET end point: api/repos/<Git  username>/<Git repo name>/pulls?state=open
 
 -To get the count of number of closed pr in current days
-api/repos/<Git  username>/<Git repo name>/pulls?state=closed&since=tody'sdate
+GET end point: api/repos/<Git  username>/<Git repo name>/pulls?state=closed&since=tody'sdate
 
 -Number of committers in last 30 days
-repos/<Git  username>/<Git repo name>/commits?since=currentdate-30
+GET end point: repos/<Git  username>/<Git repo name>/commits?since=currentdate-30
 
 Examples :
 
@@ -81,8 +81,8 @@ End point : http://localhost:9999/swagger-ui.html
 ######  spring-boot-Security
  Secures all HTTP endpoints with "basic" authentication
 ```shell
-`Username` : gituser
-`Password`: gituser
+Username : gituser
+Password: gituser
  ```
 
 ######  spring-boot-actuator
