@@ -12,7 +12,7 @@ For building and running the application you need:
 
 ## Building from Source
 
-Use the Maven to build the application 
+Use the Maven to build the application
 ```shell
 $ ./mvnw clean install
  ```
@@ -28,8 +28,8 @@ mvn spring-boot:run
 
 All the endpoints were protected with "basic" authentication
 ```shell
-**Username** : gituser
-**Password**: gituser
+Username : gituser
+Password: gituser
  ```
 
 ###### To Get the repository list of a user
@@ -75,14 +75,14 @@ http://localhost:9999/api/statistics/rogers-repo/GitRestApi?type=contributors
 Swagger 2 is an open-source project used to describe,test and document RESTful APIs.
 
 ```shell
-**End point** : http://localhost:9999/swagger-ui.html
+End point : http://localhost:9999/swagger-ui.html
  ```
 
 ######  spring-boot-Security
  Secures all HTTP endpoints with "basic" authentication
 ```shell
-**Username** : gituser
-**Password**: gituser
+`Username` : gituser
+`Password`: gituser
  ```
 
 ######  spring-boot-actuator
@@ -91,7 +91,7 @@ Spring Boot Actuator provides the infrastructure required for actuator endpoints
 annotation support for actuator endpoints. Out of the box, this module provides a number of endpoints
 including the `HealthEndpoint`, `EnvironmentEndpoint`, `BeansEndpoint` and many more.
 ```shell
-**End point** : http://localhost:9999/actuator
+End point : http://localhost:9999/actuator
  ```
 
 ######  spring-boot-test
