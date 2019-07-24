@@ -32,31 +32,31 @@ Username : gituser
 Password: gituser
  ```
 
-###### To Get the repository list of a user
+###### Get the repository list of a user
 ```shell
 GET end point: api/repolist/<repository username >
 
 Example : http://localhost:9999/api/repolist/rogers-repo
  ```
 
-###### To Get top 10 contributors name in last 30 days
+###### Get top 10 contributors name in last 30 days
 ```shell
 GET end point: api/repos/<Git  username>/<Git repo name>/contributors?per_page=10&since=currentdate-30
 
 Example : http://localhost:9999/api/contributors/rogers-repo/GitRestApi
  ```
 
-###### To Get the aggregate count based on type
+###### Get the aggregate count based on type
 
 ```shell
 
--To get the count of number of open pr
+- To get the count of number of open pr
 GET end point: api/repos/<Git  username>/<Git repo name>/pulls?state=open
 
--To get the count of number of closed pr in current days
+- To get the count of number of closed pr in current days
 GET end point: api/repos/<Git  username>/<Git repo name>/pulls?state=closed&since=tody'sdate
 
--Number of committers in last 30 days
+- Number of committers in last 30 days
 GET end point: repos/<Git  username>/<Git repo name>/commits?since=currentdate-30
 
 Examples :
