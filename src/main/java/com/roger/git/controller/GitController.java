@@ -122,11 +122,5 @@ public class GitController {
         }
     }
 
-    @GetMapping("/security")
-    @ApiOperation(value = "Test api")
-    public String checkUserAuth()
-    {
-        return "valid user";
-    }
 
 }

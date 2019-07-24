@@ -2,7 +2,6 @@ package com.roger.git.strategy;
 
 import com.roger.git.exception.GitException;
 
-
 /**
  * Strategy Context
  */

@@ -1,1 +1,89 @@
-# Rest API- to retrieve info from Git 
+# Rest API- consumes GIT public API and aggregate data
+
+Spring boot Restful API microservices used to consume GIT API’s and aggregate data
+
+##Prerequisites
+
+For building and running the application you need:
+
+- [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+- [Maven 3](https://maven.apache.org)
+
+
+##Building from Source
+
+[indent=0]
+----
+$ ./mvnw clean install
+----
+
+##Running the application locally
+
+Use the Spring Boot Maven plugin
+[indent=0]
+----
+mvn spring-boot:run
+----
+
+##Exposed RESTful API endpoints
+
+###### To Get the repository list of a user
+[indent=0]
+----
+api/repolist/<repository username >
+
+Example : http://localhost:9999/api/repolist/rogers-repo
+----
+
+###### To Get top 10 contributors name in last 30 days
+[indent=0]
+----
+api/repos/<Git  username>/<Git repo name>/contributors?per_page=10&since=currentdate-30
+
+Example : http://localhost:9999/api/contributors/rogers-repo/GitRestApi
+----
+
+###### To Get the aggregate count based on type
+
+[indent=0]
+----
+-To get the count of number of open pr
+api/repos/<Git  username>/<Git repo name>/pulls?state=open
+
+-To get the count of number of closed pr in current days
+api/repos/<Git  username>/<Git repo name>/pulls?state=closed&since=tody'sdate
+
+-Number of committers in last 30 days
+repos/<Git  username>/<Git repo name>/commits?since=currentdate-30
+
+Examples :
+
+http://localhost:9999/api/statistics/rogers-repo/GitRestApi?type=openpr
+http://localhost:9999/api/statistics/rogers-repo/GitRestApi?type=closedpr
+http://localhost:9999/api/statistics/rogers-repo/GitRestApi?type=30daysCommit
+http://localhost:9999/api/statistics/rogers-repo/GitRestApi?type=contributors
+----
+
+
+
+## Spring BOOT Modules
+
+=== spring-boot-actuator
+Actuator endpoints let you monitor and interact with your application.
+Spring Boot Actuator provides the infrastructure required for actuator endpoints. It contains
+annotation support for actuator endpoints. Out of the box, this module provides a number of endpoints
+including the `HealthEndpoint`, `EnvironmentEndpoint`, `BeansEndpoint` and many more.
+
+=== spring-boot-test
+This module contains core items and annotations that can be helpful when testing your application.
+
+=== spring-boot-devtools
+The spring-boot-devtools module provides additional development-time features such as automatic restarts,
+for a smoother application development experience. Developer tools are automatically disabled when
+running a fully packaged application.
+
+== Swagger2
+Swagger 2 is an open-source project used to describe,test and document RESTful APIs.
+
+==spring-boot-Security
+ Secures all HTTP endpoints with "basic" authentication

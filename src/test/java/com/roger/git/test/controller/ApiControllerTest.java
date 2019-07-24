@@ -50,14 +50,6 @@ public class ApiControllerTest {
     private GitApi service;
 
     @Test
-    public void basicAuth() throws Exception {
-       this.mockMvc.perform(get("/api/security").header(HttpHeaders.AUTHORIZATION,
-                        "Basic " + Base64Utils.encodeToString("gituser:gituser".getBytes())))
-                .andExpect(status().isOk());
-    }
-
-
-    @Test
     public void openPrCountTest() throws Exception {
         GitRepoStats stats=new GitRepoStats();
         stats.setCount(10);
@@ -65,8 +57,7 @@ public class ApiControllerTest {
 
 
         this.mockMvc.perform(get("/api/statistics/gituser/gitrepo?type=openpr")
-                .header(HttpHeaders.AUTHORIZATION,
-                "Basic " + Base64Utils.encodeToString("gituser:gituser".getBytes()))
+                .header(HttpHeaders.AUTHORIZATION,getUser())
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -80,10 +71,8 @@ public class ApiControllerTest {
         stats.setCount(20);
         Mockito.when( service.getRepoStatistics(Mockito.anyString(),Mockito.anyString(),Mockito.anyString())).thenReturn(stats);
 
-
         this.mockMvc.perform(get("/api/statistics/gituser/gitrepo?type=closedpr")
-                .header(HttpHeaders.AUTHORIZATION,
-                        "Basic " + Base64Utils.encodeToString("gituser:gituser".getBytes()))
+                .header(HttpHeaders.AUTHORIZATION,getUser())
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -97,10 +86,8 @@ public class ApiControllerTest {
         stats.setCount(3);
         Mockito.when( service.getRepoStatistics(Mockito.anyString(),Mockito.anyString(),Mockito.anyString())).thenReturn(stats);
 
-
         this.mockMvc.perform(get("/api/statistics/gituser/gitrepo?type=30daysCommit")
-                .header(HttpHeaders.AUTHORIZATION,
-                        "Basic " + Base64Utils.encodeToString("gituser:gituser".getBytes()))
+                .header(HttpHeaders.AUTHORIZATION,getUser())
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -114,10 +101,8 @@ public class ApiControllerTest {
         stats.setCount(3);
         Mockito.when( service.getRepoStatistics(Mockito.anyString(),Mockito.anyString(),Mockito.anyString())).thenReturn(stats);
 
-
         this.mockMvc.perform(get("/api/statistics/gituser/gitrepo?type=contributors")
-                .header(HttpHeaders.AUTHORIZATION,
-                        "Basic " + Base64Utils.encodeToString("gituser:gituser".getBytes()))
+                .header(HttpHeaders.AUTHORIZATION,getUser())
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -128,20 +113,13 @@ public class ApiControllerTest {
     @Test
     public void getGitRepoTest() throws Exception {
         GitRepositories repo1=new GitRepositories(100,"repo1","test/repo",true);
-
         GitRepositories repo2=new GitRepositories(101,"repo2","test/repo2",true);
-
         List<GitRepositories> repos=new ArrayList<>();
         repos.add(repo1);
         repos.add(repo2);
-
-
         Mockito.when( service.getRepoNames(Mockito.anyString())).thenReturn(repos);
-
-
         this.mockMvc.perform(get("/api/repolist/gituser")
-                .header(HttpHeaders.AUTHORIZATION,
-                        "Basic " + Base64Utils.encodeToString("gituser:gituser".getBytes()))
+                .header(HttpHeaders.AUTHORIZATION,getUser())
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -156,20 +134,13 @@ public class ApiControllerTest {
     @Test
     public void getContributorsTest() throws Exception {
         GitContributors Contributor1=new GitContributors("Contributor1");
-
         GitContributors Contributor2=new GitContributors("Contributor2");
-
         List<GitContributors> Contributors=new ArrayList<>();
         Contributors.add(Contributor1);
         Contributors.add(Contributor2);
-
-
         Mockito.when( service.getContributorsNames(Mockito.anyString(),Mockito.anyString())).thenReturn(Contributors);
-
-
         this.mockMvc.perform(get("/api/contributors/gituser/gitapi")
-                .header(HttpHeaders.AUTHORIZATION,
-                        "Basic " + Base64Utils.encodeToString("gituser:gituser".getBytes()))
+                .header(HttpHeaders.AUTHORIZATION,getUser())
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -180,6 +151,10 @@ public class ApiControllerTest {
                 .andReturn();
     }
 
+    private String getUser()
+    {
+       return "Basic " + Base64Utils.encodeToString("gituser:gituser".getBytes());
+    }
 
 
 

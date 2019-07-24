@@ -21,7 +21,7 @@ public class GitStatisticsApi implements Strategy {
             url += PR_OPEN_DETAILS;
         }
         else if(PR_STATUS_CLOSED.equalsIgnoreCase(type))
-        {//new Date()
+        {
             url += PR_CLOSED_DETAILS + dateFormatter.format(LocalDate.now());
         }
         else if (COMMIT_HISTORY.equalsIgnoreCase(type))

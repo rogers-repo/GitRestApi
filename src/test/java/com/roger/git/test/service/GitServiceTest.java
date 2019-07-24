@@ -26,27 +26,27 @@ public class GitServiceTest {
 
     @Test
     public void getReposTest() throws Exception {
-        List<GitRepositories> repos = service.getRepoNames("codecombat");
-        Assert.assertEquals(18, repos.size());
-        Assert.assertEquals("adobe-animate-parser",repos.get(0).getName());
+        List<GitRepositories> repos = service.getRepoNames("rogers-repo");
+        Assert.assertEquals(1, repos.size());
+        Assert.assertEquals("GitRestApi",repos.get(0).getName());
     }
 
     @Test
     public void openPrTest() throws Exception {
         GitRepoStats openPr = service.getRepoStatistics("codecombat","codecombat","openpr");
-            Assert.assertEquals(45, openPr.getCount());
+            Assert.assertEquals(47, openPr.getCount());
     }
 
     @Test
     public void closedPrTest() throws Exception {
         GitRepoStats closedPr = service.getRepoStatistics("codecombat","codecombat","closedpr");
-        Assert.assertEquals(3502, closedPr.getCount());
+        Assert.assertEquals(3503, closedPr.getCount());
     }
 
     @Test
     public void commitCountTest() throws Exception {
-        GitRepoStats totalCommits = service.getRepoStatistics("codecombat","codecombat","30daysCommit");
-        Assert.assertEquals(88, totalCommits.getCount());
+        GitRepoStats totalCommits = service.getRepoStatistics("rogers-repo","GitRestApi","30daysCommit");
+        Assert.assertEquals(2, totalCommits.getCount());
     }
 
     @Test
@@ -57,7 +57,7 @@ public class GitServiceTest {
 
     @Test
     public void contributorsNamesTest() throws Exception {
-        List<GitContributors>  totalContributors = service.getContributorsNames("rogerdhas","GitRestApi");
+        List<GitContributors>  totalContributors = service.getContributorsNames("rogers-repo","GitRestApi");
         Assert.assertEquals(1, totalContributors.size());
     }
 }

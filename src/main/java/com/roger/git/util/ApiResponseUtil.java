@@ -26,12 +26,6 @@ public class ApiResponseUtil {
 
     public static final Logger LOGGER= LogManager.getLogger(ApiResponseUtil.class);
 
-    public static ApiCustomResponse apiResponse(String message)
-    {
-       return new ApiCustomResponse(LocalDateTime.now(), HttpStatus.OK.value(),message);
-    }
-
-
     /**
      * Reads the header Link from http headers
      * and extract the last page to be consumed

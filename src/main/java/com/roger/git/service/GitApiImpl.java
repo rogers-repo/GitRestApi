@@ -6,6 +6,7 @@ import com.roger.git.bean.GitRepoStats;
 import com.roger.git.bean.GitRepositories;
 import com.roger.git.exception.GitException;
 import com.roger.git.exception.RepoUserNotFoundException;
+import com.roger.git.strategy.GitContributorApi;
 import com.roger.git.strategy.GitStatisticsApi;
 import com.roger.git.strategy.StrategyContext;
 import org.apache.logging.log4j.LogManager;
@@ -16,12 +17,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.HttpClientErrorException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import static com.roger.git.util.ApiResponseUtil.*;
 import static com.roger.git.util.GitConstant.*;
 
@@ -63,7 +62,7 @@ public class GitApiImpl implements GitApi {
      * Gets repositories Statistics using git api GET method
      * REST End point - multiple endpoints
      *
-     * Based on the strategy will decide which operation to perform
+     * Based on the type will decide which operation to perform
      *
      * Since there is a rate limit of 60
      * will hit the api max 2 times to get the count by checking the header rel link
@@ -105,10 +104,8 @@ public class GitApiImpl implements GitApi {
     @Override
     public List<GitContributors> getContributorsNames(String userName, String repoName) throws GitException, RepoUserNotFoundException {
         try {
-            DateTimeFormatter dateFormatter=  DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            //replace to user name
-            String url = GIT_REPO_DETAILS.replace(REP_USR_NME, userName).replace(REP_NME,repoName) + CONTRIBUTORS_TOP_DETAILS + dateFormatter.format(LocalDate.now().minusDays(30));
-            //call process method to hit Git api
+            StrategyContext createGitApi=new StrategyContext (new GitContributorApi());
+            String url=createGitApi.createAPI(userName,repoName,"contributer");
             ResponseEntity<?> responseEntity = processRequest(url, HttpMethod.GET, getRepoContributorsTypRef());
             List<GitContributors> repos = (List<GitContributors>) responseEntity.getBody();
             if(CollectionUtils.isEmpty(repos)) {throw new RepoUserNotFoundException(REPO_EMPTY);}
