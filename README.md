@@ -1,6 +1,6 @@
-# RESTful API- consumes GIT public API and aggregate data
+# RESTful API- consumes github public api and aggregate data
 
-Spring boot RESTful API microservices used to consume GIT API’s and aggregate data
+Spring boot RESTful API microservices used to consume github api and aggregate data
 
 ## Prerequisites
 
@@ -78,14 +78,14 @@ Swagger 2 is an open-source project used to describe,test and document RESTful A
 End point : http://localhost:9999/swagger-ui.html
  ```
 
-######  spring-boot-Security
+######  Spring-boot-Security
  Secures all HTTP endpoints with "basic" authentication
 ```shell
 Username : gituser
 Password: gituser
  ```
 
-######  spring-boot-actuator
+######  Spring-boot-actuator
 Actuator endpoints let you monitor and interact with your application.
 Spring Boot Actuator provides the infrastructure required for actuator endpoints. It contains
 annotation support for actuator endpoints. Out of the box, this module provides a number of endpoints
@@ -94,10 +94,10 @@ including the `HealthEndpoint`, `EnvironmentEndpoint`, `BeansEndpoint` and many 
 End point : http://localhost:9999/actuator
  ```
 
-######  spring-boot-test
+######  Spring-boot-test
 This module contains core items and annotations that can be helpful when testing your application.
 
-######  spring-boot-devtools
+######  Spring-boot-devtools
 The spring-boot-devtools module provides additional development-time features such as automatic restarts,
 for a smoother application development experience. Developer tools are automatically disabled when
 running a fully packaged application.

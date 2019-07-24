@@ -46,7 +46,7 @@ public class GitServiceTest {
     @Test
     public void commitCountTest() throws Exception {
         GitRepoStats totalCommits = service.getRepoStatistics("rogers-repo","GitRestApi","30daysCommit");
-        Assert.assertEquals(2, totalCommits.getCount());
+        Assert.assertEquals(10, totalCommits.getCount());
     }
 
     @Test
